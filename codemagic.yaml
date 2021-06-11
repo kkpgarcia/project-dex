@@ -1,0 +1,16 @@
+workflows:
+  ionic-capacitor-android-workflow:
+    name: Ionic Capacitor Android Workflow
+    max_build_duration: 120
+    instance_type: mac_mini
+    environment:
+      node: latest
+    triggering:
+      events:
+        - push
+    branch_patterns:
+      - pattern: main
+        include: true
+        source: true
+  artifacts:
+    - android/app/build/outputs/**/*.apk
