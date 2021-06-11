@@ -22,6 +22,9 @@ workflows:
       - name: Set Android SDK location
         script: |
                   echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/android/local.properties"
+      - name: Update dependencies
+        script: |
+                  npx cap copy
       - name: Build Android
         script: |
                   cd android
