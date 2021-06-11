@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "project-dex",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
