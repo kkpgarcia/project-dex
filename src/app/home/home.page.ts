@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import Game from "../../webgl/Game"
 @Component({
   selector: 'app-home',
@@ -6,7 +6,13 @@ import Game from "../../webgl/Game"
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor() {
-    new Game();
+  @ViewChild('canvas', { static: true })
+  canvas: ElementRef<HTMLCanvasElement>;
+
+  private _game: Game;
+
+  private ngOnInit(): void
+  {
+      this._game = new Game(this.canvas.nativeElement);
   }
 }
