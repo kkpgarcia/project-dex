@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import Game from "../../webgl/Game"
+import Sandbox from "../../webgl/Sandbox";
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,5 +16,6 @@ export class HomePage {
   private ngOnInit(): void
   {
       this._game = new Game(this.canvas.nativeElement);
+      new Sandbox();
   }
 }
