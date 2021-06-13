@@ -15,6 +15,10 @@ export class HomePage {
 
   private ngOnInit(): void
   {
+    //TODO:create a config later on along with listeners
+      this.canvas.nativeElement.width = window.innerWidth;
+      this.canvas.nativeElement.height = window.innerHeight;
+      
       this._game = new Game(this.canvas.nativeElement);
       new Sandbox();
   }
