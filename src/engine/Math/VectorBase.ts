@@ -38,6 +38,11 @@ export default class VectorBase
         return MathImpl.Distance(from.AsArray(), to.AsArray());
     }
 
+    public Lerp_i(from: VectorBase, to: VectorBase, time: number): VectorBase {
+        this._val = MathImpl.Lerp(from.AsArray(), to.AsArray(), time);
+        return this;
+    }
+
     public AsArray(): number[]
     {
         return this._val;

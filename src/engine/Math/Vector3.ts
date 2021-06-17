@@ -66,8 +66,9 @@ export default class Vector3 extends VectorBase
         return new Vector3(result[0], result[1]);
     }
 
-    public Lerp_i(from: Vector3, to: Vector3, time: number): Vector3 {
-        this._val = MathImpl.Lerp(from.AsArray(), to.AsArray(), time);
-        return this;
+    public static Cross(vec_a: Vector3, vec_b: Vector3): Vector3
+    {
+        const result = MathImpl.Cross(vec_a.AsArray(), vec_b.AsArray());
+        return new Vector3(result[0], result[1], result[2]);
     }
 }

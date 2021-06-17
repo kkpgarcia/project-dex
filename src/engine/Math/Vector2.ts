@@ -60,9 +60,4 @@ export default class Vector2 extends VectorBase
         const result = MathImpl.Lerp(from.AsArray(), to.AsArray(), time);
         return new Vector2(result[0], result[1]);
     }
-
-    public Lerp_i(from: Vector2, to: Vector2, time: number): Vector2 {
-        this._val = MathImpl.Lerp(from.AsArray(), to.AsArray(), time);
-        return this;
-    }
 }
