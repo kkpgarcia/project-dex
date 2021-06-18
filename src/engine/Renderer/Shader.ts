@@ -53,7 +53,7 @@ export default class Shader
     public Unbind(): void
     {
         const gl = RenderingContext.instance.gl;
-        gl.useProgram(0);
+        gl.useProgram(null);
     }
 
     public SetUniform4f(name: string, data: number[]): void

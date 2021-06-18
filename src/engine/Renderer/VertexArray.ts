@@ -41,6 +41,6 @@ export default class VertexArray
     public Unbind(): void
     {
         const gl = RenderingContext.instance.gl;
-        gl.bindVertexArray(0);
+        gl.bindVertexArray(null);
     }
 }
