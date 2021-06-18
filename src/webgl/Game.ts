@@ -1,6 +1,6 @@
 import RenderingContext from "../engine/Renderer/RenderingContext";
-import { VertexBuffer, IndexBuffer } from "../engine/Renderer/Buffer";
-
+import { VertexBuffer, IndexBuffer, VertexBufferLayout } from "../engine/Renderer/Buffer";
+import VertexArray from "../engine/Renderer/VertexArray";
 export default class Game
 {
     constructor(canvas: HTMLCanvasElement)
@@ -17,6 +17,10 @@ export default class Game
         ];
 
         const vertexBuffer = new VertexBuffer(vertices);
+        const vertexArray = new VertexArray();
+        const layout = new VertexBufferLayout();
+        layout.Push(2, gl.FLOAT);
+        vertexArray.AddBuffer(vertexBuffer, layout);
 
         //Create a vertex shader
         const vertCode = 'attribute vec2 coordinates;' + 'void main(void) {' + ' gl_Position = vec4(coordinates,0.0, 1.0);' + '}';
@@ -43,11 +47,6 @@ export default class Game
         //use program
         gl.useProgram(shaderProgram);
 
-        //Get attribute location
-        const coord = gl.getAttribLocation(shaderProgram, "coordinates");
-        gl.vertexAttribPointer(coord, 2, gl.FLOAT, false, 0, 0);
-        gl.enableVertexAttribArray(coord);
-
         const indices = [
             0, 1, 2, 
             0, 2, 3
@@ -63,6 +62,7 @@ export default class Game
 
         gl.viewport(0, 0, canvas.width, canvas.height);
 
+        vertexArray.Bind();
         indexBuffer.Bind();
 
         gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);

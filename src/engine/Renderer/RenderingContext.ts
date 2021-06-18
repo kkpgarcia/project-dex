@@ -11,8 +11,8 @@ export default class RenderingContext
         return this._instance;
     }
 
-    private _gl: WebGLRenderingContext;
-    public get gl(): WebGLRenderingContext
+    private _gl: WebGL2RenderingContext;
+    public get gl(): WebGL2RenderingContext
     {
         return this._gl;
     }
@@ -25,7 +25,7 @@ export default class RenderingContext
 
     public Init(canvas: HTMLCanvasElement): void
     {
-        this._gl = canvas.getContext("experimental-webgl") as WebGLRenderingContext;
+        this._gl = canvas.getContext("webgl2") as WebGL2RenderingContext;
         this._isInitalized = true;
     }
 }

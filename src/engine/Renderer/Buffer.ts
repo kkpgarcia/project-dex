@@ -49,3 +49,54 @@ export class IndexBuffer
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
     }
 }
+
+export class VertexBufferElement
+{
+    public type: number;
+    public count: number;
+    public normalized: boolean;
+
+    public static GetSizeOfType(type: number): number
+    {
+        const gl = RenderingContext.instance.gl;
+
+        switch(type)
+        {
+            case gl.FLOAT:
+                return 4;
+            case gl.UNSIGNED_INT:
+                return 4;
+            case gl.UNSIGNED_BYTE:
+                return 1;
+            default:
+                return 0;
+        }
+    }
+}
+
+export class VertexBufferLayout
+{
+    private _elements: Array<VertexBufferElement>;
+    public get elements(): Array<VertexBufferElement>
+    {
+        return this._elements;
+    }
+
+    private _stride = 0;
+    public get stride(): number
+    {
+        return this._stride;
+    }
+
+    constructor()
+    {
+        this._elements = new Array<VertexBufferElement>();
+    }
+    
+    public Push(count: number, type: number): void
+    {
+        const normalized = false;
+        this._elements.push({type, count, normalized});
+        this._stride += VertexBufferElement.GetSizeOfType(type) * count;
+    }
+}
