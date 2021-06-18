@@ -49,6 +49,8 @@ export default class Game
         gl.viewport(0, 0, canvas.width, canvas.height);
         
         shader.Bind();
+
+        shader.SetUniform4f("u_Color", [1, 0, 0, 1]);
         
         vertexArray.Bind();
         indexBuffer.Bind();

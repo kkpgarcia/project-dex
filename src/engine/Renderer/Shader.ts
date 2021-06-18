@@ -8,8 +8,28 @@ export default class Shader
 
     constructor(filePath?: string)
     {
-        const vertCode = 'attribute vec2 coordinates;' + 'void main(void) {' + ' gl_Position = vec4(coordinates,0.0, 1.0);' + '}';
-        const fragCode = 'void main(void) {' + 'gl_FragColor = vec4(0.0, 0.0, 0.0, 0.1);' + '}';
+        const vertCode = 
+        `#version 300 es
+        in vec4 a_position;
+         
+        void main() 
+        {
+            gl_Position = a_position;    
+        }
+        `
+        const fragCode = 
+        `#version 300 es
+        precision highp float;
+
+        uniform vec4 u_Color;
+
+        out vec4 color;
+
+        void main() 
+        {
+            color = u_Color;   
+        }
+        `;
         this._shader = this.CreateProgram(vertCode, fragCode);
     
         this._uniformLocationCache = new Map<string, WebGLUniformLocation>();
