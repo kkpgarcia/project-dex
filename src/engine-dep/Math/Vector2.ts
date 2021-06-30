@@ -3,6 +3,12 @@ import VectorBase from "./VectorBase"
 
 export default class Vector2 extends VectorBase
 {
+    public static ZERO = new Vector2();
+    public static LEFT = new Vector2(-1);
+    public static RIGHT = new Vector2(1);
+    public static UP = new Vector2(0, 1);
+    public static DOWN = new Vector2(0, -1);
+
     public get x(): number
     {
         return this._val[0];

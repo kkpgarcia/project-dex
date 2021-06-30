@@ -28,13 +28,20 @@ export class VertexBuffer
 export class IndexBuffer
 {
     private _buffer: WebGLBuffer;
+    private _count: number;
 
-    constructor(data: number[])
+    public get count(): number
+    {
+        return this._count;
+    }
+
+    constructor(data: number[], count: number)
     {
         const gl = RenderingContext.instance.gl;
         this._buffer = gl.createBuffer();
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this._buffer)
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(data), gl.STATIC_DRAW);
+        this._count = count;
     }
 
     public Bind(): void

@@ -1,6 +1,11 @@
-import NotificationCenter from "../engine/Events/NotificationCenter";
-import EventArgs from "../engine/Events/EventArgs";
-import ArrayEx from "../engine/Util/ArrayEx";
+// import NotificationCenter from "../engine-dep/Events/NotificationCenter";
+// import EventArgs from "../engine-dep/Events/EventArgs";
+// import ArrayEx from "../engine-dep/Util/ArrayEx";
+
+import {
+    NotificationCenter,
+    EventArgs
+} from "luna-engine";
 
 export default class Sandbox
 {

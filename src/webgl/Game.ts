@@ -1,7 +1,14 @@
-import RenderingContext from "../engine/Renderer/RenderingContext";
-import { VertexBuffer, IndexBuffer, VertexBufferLayout } from "../engine/Renderer/Buffer";
-import VertexArray from "../engine/Renderer/VertexArray";
-import Shader from "../engine/Renderer/Shader";
+import 
+{ 
+    Renderer, 
+    RenderingContext, 
+    Shader, 
+    VertexArray, 
+    VertexBuffer, 
+    IndexBuffer, 
+    VertexBufferLayout 
+} from "luna-engine";
+
 
 export default class Game
 {
@@ -29,32 +36,23 @@ export default class Game
         layout.Push(2, gl.FLOAT);
         vertexArray.AddBuffer(vertexBuffer, layout);
         
-        const indexBuffer = new IndexBuffer(indices);
+        const indexBuffer = new IndexBuffer(indices, 6);
 
         const shader = new Shader();
 
+        const renderer = new Renderer();
 
-        //Unbind all
-        vertexArray.Unbind();
-        shader.Unbind();
-        vertexBuffer.Unbind();
-        indexBuffer.Unbind();
 
         //Draw
-        gl.clearColor(1, 1, 1, 1);
-
-        gl.enable(gl.DEPTH_TEST);
-        gl.clear(gl.COLOR_BUFFER_BIT);
-
-        gl.viewport(0, 0, canvas.width, canvas.height);
+        renderer.Clear(); 
         
         shader.Bind();
 
         shader.SetUniform4f("u_Color", [1, 0, 0, 1]);
         
-        vertexArray.Bind();
-        indexBuffer.Bind();
+        renderer.Draw(vertexArray, indexBuffer, shader);
 
         gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
+
     }
 }
